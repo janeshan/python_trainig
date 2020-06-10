@@ -24,19 +24,6 @@ class TestAddContact(unittest.TestCase):
         self.return_home_page(wd)
         self.logout(wd)
 
-    def test_add_empty_contact(self):
-        wd = self.wd
-        self.open_home_page(wd)
-        self.login(wd, username="admin", password="secret")
-        self.open_contact_page(wd)
-        self.contact_creation(wd, Contact(firstname="", middlename="", secondname="", nickname="", title="", company="",
-                              address_1="", tel_1="", tel_2="", tel_3="", mail_1="",
-                              mail_2="", mail_3="", bday="", bmonth="", byear="", day="", month="", year="", address_2="", home="",
-                              notes=""))
-        self.submit_contact_creation(wd)
-        self.return_home_page(wd)
-        self.logout(wd)
-
     def logout(self, wd):
         wd.find_element_by_link_text("Logout").click()
 
@@ -60,9 +47,6 @@ class TestAddContact(unittest.TestCase):
         wd.find_element_by_name("nickname").click()
         wd.find_element_by_name("nickname").clear()
         wd.find_element_by_name("nickname").send_keys(contact.nickname)
-        # wd.find_element_by_name("photo").click()
-        # wd.find_element_by_name("photo").clear()
-        # wd.find_element_by_name("photo").send_keys("https://avatars.mds.yandex.net/get-pdb/2469852/058a9be3-4f96-41bb-9c57-8a4235b7e04f/s1200?webp=false")
         wd.find_element_by_name("title").click()
         wd.find_element_by_name("title").clear()
         wd.find_element_by_name("title").send_keys(contact.title)
