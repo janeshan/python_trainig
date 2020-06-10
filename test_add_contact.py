@@ -15,7 +15,10 @@ class TestAddContact(unittest.TestCase):
         self.open_home_page(wd)
         self.login(wd, username="admin", password="secret")
         self.open_contact_page(wd)
-        self.contact_creation(wd)
+        self.contact_creation(wd, "Иван", "Иванович", "Иванушкин", "ivan", "заголовок", "Ромашка",
+                              "казань чистопольская 33", "89000000000", "88888888888", "87777777777", "first@mail.ru",
+                              "second@mail.ru", "third@mail.ru", "1989", "2020", "казань петербургская", "1",
+                              "привет! друзья")
         self.submit_contact_creation(wd)
         self.return_home_page(wd)
         self.logout(wd)
@@ -29,10 +32,8 @@ class TestAddContact(unittest.TestCase):
     def submit_contact_creation(self, wd):
         wd.find_element_by_xpath("(//input[@name='submit'])[2]").click()
 
-    def contact_creation(self, wd, firstname="Иван", middlename="Иванович", secondname="Иванушкин", nickname="ivan",
-                         title="заголовок", company="Ромашка", address_1="казань чистопольская 33", tel_1="89000000000",
-                         tel_2="88888888888", tel_3="87777777777", mail_1="first@mail.ru", mail_2="second@mail.ru",
-                         mail_3="third@mail.ru"):
+    def contact_creation(self, wd, firstname, middlename, secondname, nickname, title, company, address_1, tel_1, tel_2,
+                         tel_3, mail_1, mail_2, mail_3, byear, year, address_2, home, notes):
         # contact creation
         wd.find_element_by_name("firstname").click()
         wd.find_element_by_name("firstname").clear()
@@ -84,7 +85,7 @@ class TestAddContact(unittest.TestCase):
         wd.find_element_by_xpath("//option[@value='March']").click()
         wd.find_element_by_name("byear").click()
         wd.find_element_by_name("byear").clear()
-        wd.find_element_by_name("byear").send_keys("1989")
+        wd.find_element_by_name("byear").send_keys(byear)
         wd.find_element_by_name("aday").click()
         Select(wd.find_element_by_name("aday")).select_by_visible_text("18")
         wd.find_element_by_xpath("(//option[@value='18'])[2]").click()
@@ -93,19 +94,16 @@ class TestAddContact(unittest.TestCase):
         wd.find_element_by_xpath("(//option[@value='March'])[2]").click()
         wd.find_element_by_name("ayear").click()
         wd.find_element_by_name("ayear").clear()
-        wd.find_element_by_name("ayear").send_keys("2020")
+        wd.find_element_by_name("ayear").send_keys(year)
         wd.find_element_by_name("address2").click()
         wd.find_element_by_name("address2").clear()
-        wd.find_element_by_name("address2").send_keys("казань петербургская ")
+        wd.find_element_by_name("address2").send_keys(address_2)
         wd.find_element_by_name("phone2").click()
         wd.find_element_by_name("phone2").clear()
-        wd.find_element_by_name("phone2").send_keys("1")
-        wd.find_element_by_name("address2").click()
-        wd.find_element_by_name("address2").clear()
-        wd.find_element_by_name("address2").send_keys("казань петербургская")
+        wd.find_element_by_name("phone2").send_keys(home)
         wd.find_element_by_name("notes").click()
         wd.find_element_by_name("notes").clear()
-        wd.find_element_by_name("notes").send_keys("привет! друзья")
+        wd.find_element_by_name("notes").send_keys(notes)
 
     def open_contact_page(self, wd):
         wd.find_element_by_link_text("add new").click()
