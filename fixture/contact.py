@@ -13,7 +13,7 @@ class ContactHelper:
     def create(self, contact):
         wd = self.app.wd
         # contact creation
-        self.app.open_contact_page()
+        self.open_contact_page()
         wd.find_element_by_name("firstname").click()
         wd.find_element_by_name("firstname").clear()
         wd.find_element_by_name("firstname").send_keys(contact.firstname)
