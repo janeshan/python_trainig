@@ -1,28 +1,19 @@
-from selenium import webdriver
 
-class Application2:
 
-    def __init__(self):
-        self.wd = webdriver.Firefox()
-        self.wd.implicitly_wait(30)
+class ContactHelper:
+    def __init__(self, app):
+        self.app = app
 
-    def logout(self):
-        wd = self.wd
-        wd.find_element_by_link_text("Logout").click()
 
-    def return_home_page(self):
-        wd = self.wd
-        wd.find_element_by_link_text("home page").click()
+    def open_contact_page(self):
+        wd = self.app.wd
+        wd.find_element_by_link_text("add new").click()
 
-    def submit_contact_creation(self):
-        wd = self.wd
-        wd.find_element_by_xpath("(//input[@name='submit'])[2]").click()
-        self.return_home_page()
 
-    def contact_creation(self, contact):
-        wd = self.wd
+    def create(self, contact):
+        wd = self.app.wd
         # contact creation
-        self.open_contact_page()
+        self.app.open_contact_page()
         wd.find_element_by_name("firstname").click()
         wd.find_element_by_name("firstname").clear()
         wd.find_element_by_name("firstname").send_keys(contact.firstname)
@@ -90,24 +81,15 @@ class Application2:
         wd.find_element_by_name("notes").clear()
         wd.find_element_by_name("notes").send_keys(contact.notes)
 
+    def submit_contact_creation(self):
+        wd = self.app.wd
+        wd.find_element_by_xpath("(//input[@name='submit'])[2]").click()
+        self.return_home_page()
 
-    def open_contact_page(self):
-        wd = self.wd
-        wd.find_element_by_link_text("add new").click()
 
-    def login(self, username, password):
-        wd = self.wd
-        self.open_home_page()
-        wd.find_element_by_name("user").clear()
-        wd.find_element_by_name("user").send_keys(username)
-        wd.find_element_by_name("pass").click()
-        wd.find_element_by_name("pass").clear()
-        wd.find_element_by_name("pass").send_keys(password)
-        wd.find_element_by_xpath("//input[@value='Login']").click()
+    def return_home_page(self):
+        wd = self.app.wd
+        wd.find_element_by_link_text("home page").click()
 
-    def open_home_page(self):
-        wd = self.wd
-        wd.get("http://localhost/addressbook/")
 
-    def destroy(self):
-        self.wd.quit()
+
