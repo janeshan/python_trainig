@@ -30,7 +30,7 @@ class TestAddContact(unittest.TestCase):
     def submit_contact_creation(self, wd):
         wd.find_element_by_xpath("(//input[@name='submit'])[2]").click()
         self.return_home_page(wd)
-        
+
     def contact_creation(self, wd, contact):
         # contact creation
         self.open_contact_page(wd)
