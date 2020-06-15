@@ -13,15 +13,12 @@ class TestAddContact(unittest.TestCase):
 
     def test_add_contact(self):
         wd = self.wd
-        self.open_home_page(wd)
         self.login(wd, username="admin", password="secret")
-        self.open_contact_page(wd)
         self.contact_creation(wd, Contact(firstname="Иван", middlename="Иванович", secondname="Иванушкин", nickname="ivan", title="заголовок", company="Ромашка",
                               address_1="казань чистопольская 33", tel_1="89000000000", tel_2="88888888888", tel_3="87777777777", mail_1="first@mail.ru",
                               mail_2="second@mail.ru", mail_3="third@mail.ru", bday="18", bmonth="March", byear="1989", day="18", month="March", year="2020", address_2="казань петербургская", home="1",
                               notes="привет! друзья"))
         self.submit_contact_creation(wd)
-        self.return_home_page(wd)
         self.logout(wd)
 
     def logout(self, wd):
@@ -32,9 +29,11 @@ class TestAddContact(unittest.TestCase):
 
     def submit_contact_creation(self, wd):
         wd.find_element_by_xpath("(//input[@name='submit'])[2]").click()
-
+        self.return_home_page(wd)
+        
     def contact_creation(self, wd, contact):
         # contact creation
+        self.open_contact_page(wd)
         wd.find_element_by_name("firstname").click()
         wd.find_element_by_name("firstname").clear()
         wd.find_element_by_name("firstname").send_keys(contact.firstname)
@@ -102,10 +101,12 @@ class TestAddContact(unittest.TestCase):
         wd.find_element_by_name("notes").clear()
         wd.find_element_by_name("notes").send_keys(contact.notes)
 
+
     def open_contact_page(self, wd):
         wd.find_element_by_link_text("add new").click()
 
     def login(self, wd, username, password):
+        self.open_home_page(wd)
         wd.find_element_by_name("user").clear()
         wd.find_element_by_name("user").send_keys(username)
         wd.find_element_by_name("pass").click()
