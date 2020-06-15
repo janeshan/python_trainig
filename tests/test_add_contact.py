@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
-from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import NoAlertPresentException
 import pytest
-from contact import Contact
-from application2 import Application2
+from model.contact import Contact
+from fixture.application2 import Application2
 
 
 @pytest.fixture
