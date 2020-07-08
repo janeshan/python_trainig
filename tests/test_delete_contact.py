@@ -11,4 +11,7 @@ def test_delete_contact(app):
                                    home="1",
                                    notes="привет! друзья"))
         app.contact.submit_contact_creation()
+    old_contact_list = app.contact.get_contact_list()
     app.contact.delete_first_contact()
+    new_contact_list = app.contact.get_contact_list()
+    assert len(old_contact_list) - 1 == len(new_contact_list)
