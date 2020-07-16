@@ -92,18 +92,9 @@ class ContactHelper:
         wd.switch_to_alert().accept()
         self.contact_cache = None
 
-    #def edit_contact_by_index(self, index, contact):
-     #   wd = self.app.wd
-       # self.open_home_page()
-        # contact edition
-      #  wd.find_element_by_xpath("//img[@alt='Edit']").click()
-       # self.fill_contact_form(contact, wd)
-      #  wd.find_element_by_xpath("(//input[@name='update'])[2]").click()
-       # self.return_home_page()
-       # self.contact_cache = None
-
-    def edit_contact(self, index, contact):
+    def edit_contact(self):
         self.edit_contact_by_index(0)
+
 
     def edit_contact_by_index(self, index, contact):
         wd = self.app.wd

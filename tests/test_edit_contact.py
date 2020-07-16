@@ -18,9 +18,9 @@ def test_edit_contact(app):
                                address_1="Kazan Tatarstan st 5", tel_1="89111111111", tel_2="89222222222", tel_3="87777777777", mail_1="1first@mail.ru",
                                mail_2="2second@mail.ru", mail_3="3third@mail.ru", bday="18", bmonth="March", byear="1989", day="18", month="March", year="2020", address_2="Kazan Chistopol 11", home="1",
                                notes="Hi!")
-    contact.id = old_contact_list[0].id
+    contact.id = old_contact_list[index].id
     app.contact.edit_contact_by_index(index, contact)
     new_contact_list = app.contact.get_contact_list()
     assert len(old_contact_list) == len(new_contact_list)
-    old_contact_list[0] = contact
+    old_contact_list[index] = contact
     assert sorted(old_contact_list, key=Contact.id_or_max) == sorted(new_contact_list, key=Contact.id_or_max)
