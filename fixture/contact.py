@@ -92,16 +92,26 @@ class ContactHelper:
         wd.switch_to_alert().accept()
         self.contact_cache = None
 
+    #def edit_contact_by_index(self, index, contact):
+     #   wd = self.app.wd
+       # self.open_home_page()
+        # contact edition
+      #  wd.find_element_by_xpath("//img[@alt='Edit']").click()
+       # self.fill_contact_form(contact, wd)
+      #  wd.find_element_by_xpath("(//input[@name='update'])[2]").click()
+       # self.return_home_page()
+       # self.contact_cache = None
 
-    def edit_contact(self, contact):
+    def edit_contact(self, index, contact):
+        self.edit_contact_by_index(0)
+
+    def edit_contact_by_index(self, index, contact):
         wd = self.app.wd
         self.open_home_page()
         # contact edition
-        wd.find_element_by_xpath("//img[@alt='Edit']").click()
-        self.fill_contact_form(contact, wd)
-        wd.find_element_by_xpath("(//input[@name='update'])[2]").click()
-        self.return_home_page()
-        self.contact_cache = None
+        el = wd.find_elements_by_name("entry")[index]
+        listel = el.find_elements_by_tag_name("td")[7]
+        listel.find_element_by_tag_name("a").click
 
     def open_home_page(self):
         wd = self.app.wd
@@ -127,8 +137,8 @@ class ContactHelper:
             for el in wd.find_elements_by_name("entry"):
                 contactlist = el.find_elements_by_tag_name("td")
                 id = contactlist[0].find_element_by_tag_name("input").get_attribute("value")
-                firstname = contactlist[1].text
-                secondname = contactlist[2].text
+                firstname = contactlist[2].text
+                secondname = contactlist[1].text
                 self.contact_cache.append(Contact(firstname=firstname, secondname=secondname, id=id))
         return list(self.contact_cache)
 
