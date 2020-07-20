@@ -102,7 +102,7 @@ class ContactHelper:
         # contact edition
         el = wd.find_elements_by_name("entry")[index]
         listel = el.find_elements_by_tag_name("td")[7]
-        listel.find_element_by_tag_name("a").click
+        listel.find_element_by_tag_name("a").click()
 
     def open_home_page(self):
         wd = self.app.wd
