@@ -103,6 +103,11 @@ class ContactHelper:
         el = wd.find_elements_by_name("entry")[index]
         listel = el.find_elements_by_tag_name("td")[7]
         listel.find_element_by_tag_name("a").click()
+        self.fill_contact_form(contact, wd)
+        wd.find_element_by_xpath("(//input[@name='update'])[2]").click()
+        self.return_home_page()
+        self.contact_cache = None
+
 
     def open_home_page(self):
         wd = self.app.wd
