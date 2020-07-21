@@ -8,7 +8,7 @@ def test_add_contact(app):
     old_contact_list = app.contact.get_contact_list()
     contact = Contact(firstname="Николай", middlename="Иванович", secondname="Иванушкин", nickname="ivan", title="заголовок", company="Ромашка",
                                address_1="казань чистопольская 33", homephone="89000000000", mobilephone="88888888888", workphone="87777777777", mail_1="first@mail.ru",
-                               mail_2="second@mail.ru", mail_3="third@mail.ru", bday="18", bmonth="March", byear="1989", day="18", month="March", year="2020", address_2="казань петербургская", secondaryphone="1",
+                               mail_2="second@mail.ru", mail_3="third@mail.ru", bday="18", bmonth="March", byear="1989", day="18", month="March", year="2020", address_2="казань петербургская", secondaryphone="86666666666",
                                notes="привет! друзья")
     app.contact.create(contact)
     app.contact.submit_contact_creation()
