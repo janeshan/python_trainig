@@ -145,12 +145,10 @@ class ContactHelper:
             for el in wd.find_elements_by_name("entry"):
                 contactlist = el.find_elements_by_tag_name("td")
                 id = contactlist[0].find_element_by_tag_name("input").get_attribute("value")
-                all_phone = contactlist[5].text.splitlines()
+                all_phone = contactlist[5].text
                 firstname = contactlist[2].text
                 secondname = contactlist[1].text
-                self.contact_cache.append(Contact(firstname=firstname, secondname=secondname, id=id,
-                                                  homephone=all_phone[0], mobilephone=all_phone[1],
-                                                  workphone=all_phone[2], secondaryphone=all_phone[3]))
+                self.contact_cache.append(Contact(firstname=firstname, secondname=secondname, id=id, all_phone_from_home_page = all_phone))
         return list(self.contact_cache)
 
     def get_contact_info_from_edit_page(self, index):
