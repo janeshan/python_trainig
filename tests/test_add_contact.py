@@ -2,11 +2,9 @@
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import NoAlertPresentException
 from model.contact import Contact
-import pytest
-from data.contacts import testdata
 
-@pytest.mark.parametrize("contact", testdata, ids = [repr(x) for x in testdata])
-def test_add_contact(app, contact):
+def test_add_contact(app, json_contacts):
+    contact = json_contacts
     old_contact_list = app.contact.get_contact_list()
     app.contact.create(contact)
     app.contact.submit_contact_creation()
