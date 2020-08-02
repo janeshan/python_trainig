@@ -46,7 +46,7 @@ class GroupHelper:
     def select_group_by_id(self, id):
         wd = self.app.wd
         # delete first group
-        wd.find_element_by_css_selector("input[value='%s']" %id).click()
+        wd.find_element_by_css_selector("input[value='%s']" % id).click()
 
     def delete_first_group(self):
         self.delete_group_by_index(0)
