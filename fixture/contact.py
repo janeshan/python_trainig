@@ -116,6 +116,14 @@ class ContactHelper:
         listel = el.find_elements_by_tag_name("td")[7]
         listel.find_element_by_tag_name("a").click()
 
+    def open_contact_to_edit_by_id(self, id):
+        wd = self.app.wd
+        self.open_home_page()
+        # contact edition
+        el = wd.find_elements_by_name("entry")[id]
+        listel = el.find_elements_by_tag_name("td")[7]
+        listel.find_element_by_tag_name("a").click()
+
     def open_contact_view_by_index(self, index):
         wd = self.app.wd
         self.open_home_page()
@@ -132,6 +140,13 @@ class ContactHelper:
         self.return_home_page()
         self.contact_cache = None
 
+    def edit_contact_by_id(self, id, contact):
+        wd = self.app.wd
+        self.open_contact_to_edit_by_id(id)
+        self.fill_contact_form(contact, wd)
+        wd.find_element_by_xpath("(//input[@name='update'])[2]").click()
+        self.return_home_page()
+        self.contact_cache = None
 
     def open_home_page(self):
         wd = self.app.wd
