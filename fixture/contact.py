@@ -147,11 +147,12 @@ class ContactHelper:
                 id = contactlist[0].find_element_by_tag_name("input").get_attribute("value")
                 all_phone = contactlist[5].text
                 all_mails = contactlist[4].text
+                all_address = contactlist[3].text
                 firstname = contactlist[2].text
                 secondname = contactlist[1].text
                 self.contact_cache.append(Contact(firstname=firstname, secondname=secondname,
                                                   id=id, all_phone_from_home_page=all_phone,
-                                                  all_mails_from_home_page=all_mails))
+                                                  all_mails_from_home_page=all_mails, all_address_from_home_page=all_address))
         return list(self.contact_cache)
 
     def get_contact_info_from_edit_page(self, index):
@@ -167,10 +168,12 @@ class ContactHelper:
         mail_1 = wd.find_element_by_name("email").get_attribute("value")
         mail_2 = wd.find_element_by_name("email2").get_attribute("value")
         mail_3 = wd.find_element_by_name("email3").get_attribute("value")
+        address_1 = wd.find_element_by_name("address").get_attribute("value")
+        address_2 = wd.find_element_by_name("address2").get_attribute("value")
         return Contact(firstname=firstname, secondname=secondname, id=id,
                         homephone=homephone, workphone=workphone,
                         mobilephone=mobilephone, secondaryphone=secondaryphone, mail_1=mail_1, mail_2=mail_2,
-                        mail_3=mail_3)
+                        mail_3=mail_3, address_1=address_1, address_2=address_2)
 
     def get_contact_from_view_page(self, index):
         wd = self.app.wd
@@ -184,8 +187,10 @@ class ContactHelper:
         mail_1 = mails[0].text
         mail_2 = mails[1].text
         mail_3 = mails[2].text
+        address_1 = address_1[0].text
+        address_2 = address_2[1].text
         return Contact(homephone=homephone, workphone=workphone, mobilephone=mobilephone, secondaryphone=secondaryphone,
-                       mail_1=mail_1, mail_2=mail_2, mail_3=mail_3)
+                       mail_1=mail_1, mail_2=mail_2, mail_3=mail_3,address_1=address_1, address_2=address_2)
 
 
 
