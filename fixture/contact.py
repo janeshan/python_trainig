@@ -183,14 +183,7 @@ class ContactHelper:
         mobilephone = re.search("M: (.*)", text).group(1)
         workphone = re.search("W: (.*)", text).group(1)
         secondaryphone = re.search("P: (.*)", text).group(1)
-        mails = find_elements_by_xpath('//a[@href=mailto]')
-        mail_1 = mails[0].text
-        mail_2 = mails[1].text
-        mail_3 = mails[2].text
-        address_1 = address_1[0].text
-        address_2 = address_2[1].text
-        return Contact(homephone=homephone, workphone=workphone, mobilephone=mobilephone, secondaryphone=secondaryphone,
-                       mail_1=mail_1, mail_2=mail_2, mail_3=mail_3,address_1=address_1, address_2=address_2)
+        return Contact(homephone=homephone, workphone=workphone, mobilephone=mobilephone, secondaryphone=secondaryphone)
 
 
 
